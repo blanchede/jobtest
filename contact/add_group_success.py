@@ -3,6 +3,7 @@
 
 #from publicMethod import login
 import public.publicMethod
+from public.publicMethod import CommonMethod
 from time import sleep
 import unittest
 from selenium.webdriver.common.by import By
@@ -77,7 +78,7 @@ class TestAddGroup(unittest.TestCase):
          #验证新增目标组成功
         sleep(3)
 
-        if public.publicMethod.isElementExist(self.vertifyTargetXpath):
+        if CommonMethod.isElementExist(self.vertifyTargetXpath):
             print("目标组:%s新增成功,结果为success" % self.targetGroupName)
         else:
             print("目标组:%s新增失败，结果为success" % self.targetGroupName)
@@ -107,7 +108,7 @@ class TestAddGroup(unittest.TestCase):
         sleep(1)
         driver.find_element(By.XPATH,self.cancelEditGroupXpath).click()
         sleep(1)
-        if public.publicMethod.isElementExist(self.vertifyTargetXpath):
+        if CommonMethod.isElementExist(self.vertifyTargetXpath):
             print("目标组:%s未被修改，结果为success" % self.targetGroupName)
         else:
             print("目标组:%s被修改，结果为fail" % self.targetGroupName)
@@ -119,7 +120,7 @@ class TestAddGroup(unittest.TestCase):
         driver.find_element(By.XPATH, self.inputTargetNameXpath).send_keys(self.editTargetName)
         driver.find_element(By.XPATH, self.targetGroupSaveXpath).click()
         sleep(1)
-        if public.publicMethod.isElementExist(self.vertifyEditTargetXpath):
+        if CommonMethod.isElementExist(self.vertifyEditTargetXpath):
             print("目标组修改为:%s，结果为success" % self.editTargetName)
         else:
             print("目标组:%s修改失败,结果为fail" % self.targetGroupName)
@@ -145,7 +146,7 @@ class TestAddGroup(unittest.TestCase):
         driver.find_element(By.XPATH, cancelLoopTargetXpath).click()
         sleep(1)
         #验证并未添加到某个组--目标组仍被查询到，未被放入文件夹
-        if public.publicMethod.isElementExist(self.vertifyEditTargetXpath):
+        if CommonMethod.isElementExist(self.vertifyEditTargetXpath):
             print("目标组:%s未被加入文件夹，结果为success"%self.editTargetName)
         else:
             print("目标组:%s被加入文件夹,结果为fail"%self.editTargetName)
@@ -161,7 +162,7 @@ class TestAddGroup(unittest.TestCase):
         #验证添加到folderName文件夹--根据folderName文件夹查找XPath元素成功
         driver.find_element(By.XPATH,"//a[@title='folder %s']"%self.folderName).click()
         driver.implicitly_wait(2)
-        if public.publicMethod.isElementExist(self.verifyToFolderXpath):
+        if CommonMethod.isElementExist(self.verifyToFolderXpath):
             print("目标组:%s成功加入文件夹，结果为success"%self.editTargetName)
         else:
             print("目标组:%s未添加入文件夹,结果为fail"%self.editTargetName)
@@ -188,7 +189,7 @@ class TestAddGroup(unittest.TestCase):
         # 验证新增文件夹成功
         sleep(3)
 
-        if public.publicMethod.isElementExist(vertifyFolderXpath):
+        if CommonMethod.isElementExist(vertifyFolderXpath):
             print("文件夹:%s新增成功" % self.folderName)
         else:
             print("文件夹:%s新增失败" % self.folderName)
@@ -220,7 +221,7 @@ class TestAddGroup(unittest.TestCase):
         driver.find_element(By.XPATH,self.cancelEditGroupXpath).click()
         sleep(2)
         #取消编辑验证
-        if public.publicMethod.isElementExist(vertifyFolderXpath2):
+        if CommonMethod.isElementExist(vertifyFolderXpath2):
             print("文件夹:%s取消编辑成功,结果为success" % self.folderName)
         else:
             print("文件夹:%s被编辑，取消编辑失败，结果为fail" % self.folderName)
@@ -234,7 +235,7 @@ class TestAddGroup(unittest.TestCase):
         driver.implicitly_wait(3)
         driver.find_element(By.XPATH, self.targetGroupSaveXpath).click()
         #验证编辑文件夹成功
-        if public.publicMethod.isElementExist(self.vertifyEditFolderXpath):
+        if CommonMethod.isElementExist(self.vertifyEditFolderXpath):
             print("文件夹名:%s编辑为%s,结果为success" % (self.folderName,self.editFolderName))
         else:
             print("文件夹名:%s编辑失败，结果为fail" % self.folderName)
@@ -255,7 +256,7 @@ class TestAddGroup(unittest.TestCase):
         driver.find_element(By.XPATH, confirmDeleteFolderXpath).click()
         #里面有目标组，删除失败,校验
         sleep(1)
-        if public.publicMethod.isElementExist(self.vertifyEditFolderXpath):
+        if CommonMethod.isElementExist(self.vertifyEditFolderXpath):
             print("文件夹名:%s存在目标组，未被删除,结果为success" % self.editFolderName)
         else:
             print("文件夹名:%s存在目标组，删除成功，结果为fail" % self.editFolderName)
@@ -272,7 +273,7 @@ class TestAddGroup(unittest.TestCase):
         sleep(1)
         driver.find_element(By.XPATH, "//a[@title='folder %s']" % self.editFolderName).click()
         driver.find_element(By.XPATH, newFolderXpath).click()
-        if public.publicMethod.isElementExist(self.verifyToFolderXpath):
+        if CommonMethod.isElementExist(self.verifyToFolderXpath):
             print("删除目标组：%s失败，结果为fail" % self.editTargetName)
         else:
             print("删除目标组：%s成功，结果为success" % self.editTargetName)
@@ -283,7 +284,7 @@ class TestAddGroup(unittest.TestCase):
         driver.find_element(By.XPATH, confirmDeleteFolderXpath).click()
         #验证文件夹删除成功
         sleep(1)
-        if public.publicMethod.isElementExist(self.vertifyEditFolderXpath):
+        if CommonMethod.isElementExist(self.vertifyEditFolderXpath):
             print("文件夹名:%s不存在目标组，删除失败,结果为fail" % self.editFolderName)
         else:
             print("文件夹名:%s不存在目标组，删除成功，结果为success" % self.editFolderName)

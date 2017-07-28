@@ -5,6 +5,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="_init_" />
+          <option value="public.const.TypeException" />
         </list>
       </option>
     </inspection_tool>

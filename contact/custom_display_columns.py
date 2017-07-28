@@ -235,7 +235,8 @@ class TestCustomDisplayColumns(unittest.TestCase):
             num += 1
         print("反选定制显示列成功，结果为success")
 
-
+    def tearDown(self):
+        print("test end")
 
 
 
